@@ -57,8 +57,32 @@ describe("Employee", () => {
       expect(emp).toThrowError(err);
     });
   });
-  describe("getName()", () => {});
-  //   describe("getId()", () => {});
-  //   describe("getEmail()", () => {});
-  //   describe("getRoll()", () => {});
+  describe("getName()", () => {
+    it("should return the name of the employee", () => {
+      const emp = new employee("Storm", 866, "storm.morzos@gmail.com");
+      const nameGot = emp.getName();
+      expect(nameGot).toEqual("Storm");
+    });
+  });
+  describe("getId()", () => {
+    it("should return the id of the employee", () => {
+      const emp = new employee("Storm", 866, "storm.morzos@gmail.com");
+      const idGot = emp.getId();
+      expect(idGot).toEqual(866);
+    });
+  });
+  describe("getEmail()", () => {
+    it("should return the email of the employee", () => {
+      const emp = new employee("Storm", 866, "storm.morzos@gmail.com");
+      const emailGot = emp.getEmail();
+      expect(emailGot).toEqual("storm.morzos@gmail.com");
+    });
+  });
+  describe("getRoll()", () => {
+    it("should return employee", () => {
+      const emp = new employee("Storm", 866, "storm.morzos@gmail.com");
+      const roleGot = emp.getRole();
+      expect(roleGot).toEqual("Employee");
+    });
+  });
 });
