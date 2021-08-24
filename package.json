@@ -1,0 +1,26 @@
+{
+  "name": "teamprofilegenhw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HavoxPrime/teamProfileGenHW.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  },
+  "dependencies": {
+    "validator": "^13.6.0",
+    "inquirer": "^8.1.2"
+  },
+  "bugs": {
+    "url": "https://github.com/HavoxPrime/teamProfileGenHW/issues"
+  },
+  "homepage": "https://github.com/HavoxPrime/teamProfileGenHW#readme"
+}
