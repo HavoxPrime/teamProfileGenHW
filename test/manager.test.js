@@ -57,7 +57,7 @@ describe("Manager", () => {
 
       expect(emp).toThrowError(err);
     });
-    it("should throw and err if provided a string id", () => {
+    it("should throw and err if provided a string office number", () => {
       const emp = () => new manager("Storm", 866, "a@gmail.com", "777");
       const err = new Error(
         "Expected parameter 'officeNum' to be a non-negative number"

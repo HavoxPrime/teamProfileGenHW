@@ -57,6 +57,7 @@ describe("Employee", () => {
       expect(emp).toThrowError(err);
     });
   });
+  // for the functions
   describe("getName()", () => {
     it("should return the name of the employee", () => {
       const emp = new employee("Storm", 866, "storm.morzos@gmail.com");
