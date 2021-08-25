@@ -3,19 +3,83 @@ const engie = require("./Employees/engie.js");
 const intern = require("./Employees/intern.js");
 const manager = require("./Employees/manager.js");
 const fs = require("fs");
-
-// code for card
-{
-  /* <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title"> EMP title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Name</li>
-    <li class="list-group-item">ID</li>
-    <li class="list-group-item"><a href="EMAIL"></a></li>
-    <li class="list-group-item">SCHOOL/OFFICE NUMBER/GIT USERNAME</li>
-  </ul>
-</div> */
-}
+const empQuestions = [
+  {
+    type: "list",
+    message: "What type of employee do you have?",
+    name: "empType",
+    choices: ["Manager", "Engineer", "Intern"],
+  },
+  {
+    type: "list",
+    message: "Do you have more employees?",
+    name: "moreEmp",
+    choices: ["Yes", "NO"],
+  },
+];
+const engQuestions = [
+  {
+    type: "input",
+    message: "What is their name?",
+    name: "name",
+  },
+  {
+    type: "input",
+    message: "What is their id?",
+    name: "id",
+  },
+  {
+    type: "input",
+    message: "What is the their email?",
+    name: "email",
+  },
+  {
+    type: "input",
+    message: "What is the their git hub username?",
+    name: "gitUser",
+  },
+];
+const intQuestions = [
+  {
+    type: "input",
+    message: "What is their name?",
+    name: "name",
+  },
+  {
+    type: "input",
+    message: "What is their id?",
+    name: "id",
+  },
+  {
+    type: "input",
+    message: "What is the their email?",
+    name: "email",
+  },
+  {
+    type: "input",
+    message: "What is the their school?",
+    name: "school",
+  },
+];
+const manQuestions = [
+  {
+    type: "input",
+    message: "What is their name?",
+    name: "name",
+  },
+  {
+    type: "input",
+    message: "What is their id?",
+    name: "id",
+  },
+  {
+    type: "input",
+    message: "What is the their email?",
+    name: "email",
+  },
+  {
+    type: "input",
+    message: "What is the their office number?",
+    name: "officeNum",
+  },
+];
