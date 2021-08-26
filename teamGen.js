@@ -57,7 +57,13 @@ const fromTheTop = [
   },
 ];
 
+function callback(err) {
+  if (err) throw err;
+  console.log('source was not copied to destination');
+}
+
 function getSetInfo() {
+  fs.copyFile("./res/index.html","./output/index.html", callback)
   inq.prompt(empQuestions).then((response) => {
     if (response.empType === "Manager") {
       inq.prompt(manQuestions).then((manResponse) => {
