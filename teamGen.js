@@ -17,7 +17,7 @@ const empQuestions = [
     name: "name",
   },
   {
-    type: "input",
+    type: "number",
     message: "What is their id?",
     name: "id",
   },
@@ -43,7 +43,7 @@ const intQuestions = [
 ];
 const manQuestions = [
   {
-    type: "input",
+    type: "number",
     message: "What is the their office number?",
     name: "officeNum",
   },
@@ -67,7 +67,19 @@ function getSetInfo() {
           response.email,
           manResponse.officeNum
         );
-        generateCard(emp);
+        fs.appendFile(
+          `./output/index.html`,
+          generateCard(emp),
+          (err) => (err ? console.log(err) : console.log("Success!"))
+        );
+        inq.prompt(fromTheTop).then((ans) => {
+          if (ans.moreEmp === "Yes") {
+            getSetInfo();
+          } else {
+            finishingStroke();
+            console.log("Check index.html in the output folder for your team!");
+          }
+        });
       });
     } else if (response.empType === "Engineer") {
       inq.prompt(engQuestions).then((engResponse) => {
@@ -75,9 +87,21 @@ function getSetInfo() {
           response.name,
           response.id,
           response.email,
-          engResponse.officeNum
+          engResponse.gitUser
         );
-        generateCard(emp);
+        fs.appendFile(
+          `./output/index.html`,
+          generateCard(emp),
+          (err) => (err ? console.log(err) : console.log("Success!"))
+        );
+        inq.prompt(fromTheTop).then((ans) => {
+          if (ans.moreEmp === "Yes") {
+            getSetInfo();
+          } else {
+            finishingStroke();
+            console.log("Check index.html in the output folder for your team!");
+          }
+        });
       });
     } else {
       // Intern
@@ -86,15 +110,22 @@ function getSetInfo() {
           response.name,
           response.id,
           response.email,
-          intResponse.officeNum
+          intResponse.school
         );
-        generateCard(emp);
+        fs.appendFile(
+          `./output/index.html`,
+          generateCard(emp),
+          (err) => (err ? console.log(err) : console.log("Success!"))
+        );
+        inq.prompt(fromTheTop).then((ans) => {
+          if (ans.moreEmp === "Yes") {
+            getSetInfo();
+          } else {
+            finishingStroke();
+            console.log("Check index.html in the output folder for your team!");
+          }
+        });
       });
-    }
-  });
-  inq.prompt(fromTheTop).then((ans) => {
-    if (ans.moreEmp === "Yes") {
-      getSetInfo();
     }
   });
 }
@@ -104,30 +135,29 @@ function generateCard(daEmp) {
   let spec;
   let img;
   let imgDesc;
-  if (daEmp.getRoll() === "Manager") {
-    img = "";
+  if (daEmp.getRole() === "Manager") {
+    img = "https://raw.githubusercontent.com/HavoxPrime/teamProfileGenHW/main/imgs/managerCoffe.png";
     imgDesc = "manager img";
-    spec = daEmp.officeNum();
-  } else if (daEmp.getRoll() === "Engineer") {
-    img = "";
+    spec = `Office Number: ${daEmp.getOfficeNum()}`;
+  } else if (daEmp.getRole() === "Engineer") {
+    img = "https://raw.githubusercontent.com/HavoxPrime/teamProfileGenHW/main/imgs/engieGlasses.png";
     imgDesc = "engineer img";
-    spec = `<a href="${daEmp.getGitHub()}">${daEmp.getGitHub()}</a>`;
+    spec = `GitHub: <a href="${daEmp.getGitHub()}">${daEmp.getGitHub()}</a>`;
   } else {
-    img = "";
-    imgDesc = "intern img";
-    spec = daEmp.getSchool();
+    img = "https://raw.githubusercontent.com/HavoxPrime/teamProfileGenHW/main/imgs/internPencil.png";
+    imgDesc = "intern";
+    spec = `School: ${daEmp.getSchool()}`;
   }
-  empCard = `<div class="row row-cols-1 row-cols-md-2 g-4">\n`;
-  empCard += `<div class="col">\n`;
+  empCard = `<div class="col">\n`;
   empCard += `<div class="card">\n`;
   empCard += `<img src="${img}" class="card-img-top" alt="${imgDesc}" />\n`;
   empCard += `<div class="card-body">\n`;
-  empCard += `<h5 class="card-title">Card title</h5>\n`;
+  empCard += `<h5 class="card-title">${daEmp.getRole()}</h5>\n`;
   empCard += `</div>\n`;
   empCard += `<ul class="list-group list-group-flush">\n`;
-  empCard += `<li class="list-group-item">${daEmp.getName()}</li>\n`; //name
-  empCard += `<li class="list-group-item">${daEmp.getId()}</li>\n`; //id
-  empCard += `<li class="list-group-item">
+  empCard += `<li class="list-group-item">Name: ${daEmp.getName()}</li>\n`; //name
+  empCard += `<li class="list-group-item">Id: ${daEmp.getId()}</li>\n`; //id
+  empCard += `<li class="list-group-item">Email: 
                 <a href="mailto:${daEmp.getEmail()}" target="NO_BLANK"
                   >${daEmp.getEmail()}</a
                 >
@@ -138,7 +168,10 @@ function generateCard(daEmp) {
   empCard += `</div>\n`;
   return empCard;
 }
-// fs.appendFile(`./output/index.html`, generateCard(response,intResponse, intern), (err) =>
-//   err ? console.log(err) : console.log("Success!")
-// );
+
+function finishingStroke(){
+  const lastwords=`</div>\n</body>\n</html>`
+  fs.appendFile(`./output/index.html`, lastwords, (err) => (err ? console.log(err) : console.log("Card successfully added!")));
+}
+
 getSetInfo();
