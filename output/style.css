@@ -19,3 +19,23 @@ img{
   max-width: 100px;
   max-height: 100px;
 }
+
+.list-group-item{
+  font-size: large;
+  background-color: darkgray;
+}
+
+.card-title{
+  font-size: x-large;
+  background-color: darkgray;
+  border-bottom: solid black 2px;
+}
+
+.row{
+  color: white;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.card{
+  background-color: darkgray;
+}
